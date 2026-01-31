@@ -66,9 +66,9 @@ export default function Home() {
             <p className="font-display text-sm animate-pulse">CONNECTING_TO_SERVER...</p>
           </div>
         ) : error ? (
-           <div className="flex flex-col items-center justify-center h-full gap-4 text-destructive">
+          <div className="flex flex-col items-center justify-center h-full gap-4 text-destructive">
             <p className="font-display text-lg">SYSTEM_CRITICAL_FAILURE</p>
-            <p className="font-mono text-sm opacity-70">Error Code: 0xDEADBEEF</p>
+            <p className="font-mono text-sm opacity-70">Error: {(error as Error).message || "0xDEADBEEF"}</p>
           </div>
         ) : messages && messages.length === 0 ? (
           <div className="flex flex-col items-center justify-center h-full opacity-30 text-center gap-4">
