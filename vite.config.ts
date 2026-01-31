@@ -9,9 +9,8 @@ export default defineConfig(async () => ({
   plugins: [
     react(),
     runtimeErrorOverlay(),
-    ...(process.env.NODE_ENV !== "production" &&
-    process.env.REPL_ID !== undefined
-      ? [
+    ...(process.env.NODE_ENV !== "production" && process.env.REPL_ID !== undefined
+        ? [
           (await import("@replit/vite-plugin-cartographer")).cartographer(),
           (await import("@replit/vite-plugin-dev-banner")).devBanner(),
         ]
@@ -29,7 +28,7 @@ export default defineConfig(async () => ({
   },
 
   build: {
-    outDir: path.resolve(import.meta.dirname, "dist/public"),
+    outDir: path.resolve(import.meta.dirname, "dist"),
     emptyOutDir: true,
   },
 
