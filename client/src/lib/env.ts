@@ -1,2 +1,3 @@
 export const IS_GH_PAGES =
-  import.meta.env.BASE_URL !== "/";
+  import.meta.env.BASE_URL !== "/" ||
+  location.hostname.includes("github.io");
