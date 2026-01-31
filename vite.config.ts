@@ -3,9 +3,10 @@ import react from "@vitejs/plugin-react";
 import path from "path";
 
 export default defineConfig({
-  base: "/foolish-disfigured-afkgaming/",
-
   plugins: [react()],
+  base: process.env.GITHUB_PAGES === "true"
+    ? "/foolish-disfigured-afkgaming/"
+    : "/",
 
   root: path.resolve(import.meta.dirname, "client"),
 
