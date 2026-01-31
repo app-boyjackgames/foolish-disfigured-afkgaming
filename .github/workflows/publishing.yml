@@ -40,5 +40,11 @@ jobs:
         with:
           path: ./client
 
+      - name: Run
+        run: npm run dev
+        env:
+          NODE_ENV: production
+          BASE_URL: /${{ github.event.repository.name }}/
+
       - name: Deploy
         uses: actions/deploy-pages@v4
