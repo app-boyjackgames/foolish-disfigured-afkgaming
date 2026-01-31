@@ -6,9 +6,18 @@ export function useChatHistory() {
   return useQuery({
     queryKey: [api.chat.history.path],
     queryFn: async () => {
-      const res = await fetch(api.chat.history.path);
-      if (!res.ok) throw new Error("Failed to fetch history");
-      return api.chat.history.responses[200].parse(await res.json());
+      try {
+        const res = await fetch(api.chat.history.path);
+        if (!res.ok) {
+          const text = await res.text();
+          throw new Error(`Failed to fetch history: ${res.status} ${text}`);
+        }
+        const json = await res.json();
+        return api.chat.history.responses[200].parse(json);
+      } catch (err) {
+        console.error("Chat history fetch error:", err);
+        throw err;
+      }
     },
     // Poll less frequently to enhance "laggy" feel, or more frequently for responsiveness?
     // Let's stick to standard behavior but style it chaotic.
