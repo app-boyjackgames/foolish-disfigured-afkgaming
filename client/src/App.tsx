@@ -28,10 +28,4 @@ function App() {
   );
 }
 
-export default function App() {
-  return (
-    <Routes>
-      <Route path="/" element={<h1>Главная</h1>} />
-    </Routes>
-  );
-}
+export default App;
