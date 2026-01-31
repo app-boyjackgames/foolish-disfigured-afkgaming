@@ -26,7 +26,8 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Build
+      # ⚠️ ТОЛЬКО build фронтенда
+      - name: Build frontend
         run: npm run build
         env:
           NODE_ENV: production
@@ -38,13 +39,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: ./client
-
-      - name: Run
-        run: npm run dev
-        env:
-          NODE_ENV: production
-          BASE_URL: /${{ github.event.repository.name }}/
+          path: ./dist   # или ./client/dist — СТРОГО билд
 
       - name: Deploy
         uses: actions/deploy-pages@v4
